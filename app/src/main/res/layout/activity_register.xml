@@ -14,28 +14,46 @@
         <EditText
             android:paddingLeft="20dp"
             android:backgroundTint="@color/baby_powder"
-            android:drawableLeft="@drawable/ic_baseline_email_24"
+            android:drawableLeft="@drawable/ic_baseline_person_24"
             android:drawablePadding="20dp"
-            android:id="@+id/login_email"
-            android:hint="Email"
+            android:id="@+id/register_username"
+            android:hint="Username"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"/>
         <View
 
             android:id="@+id/separator"
-            android:layout_below="@+id/login_email"
+            android:layout_below="@+id/register_username"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"/>
         <EditText
+            android:layout_below="@id/separator"
+            android:paddingLeft="20dp"
+            android:backgroundTint="@color/baby_powder"
+            android:drawableLeft="@drawable/ic_baseline_email_24"
+            android:drawablePadding="20dp"
+            android:id="@+id/register_email"
+            android:hint="Email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:id="@+id/separator2"
+            android:layout_below="@id/register_email"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/separator2"
             android:paddingLeft="20dp"
             android:backgroundTint="@color/baby_powder"
             android:drawableLeft="@drawable/ic_baseline_lock_24"
             android:drawablePadding="20dp"
-            android:id="@+id/login_password"
-            android:layout_below="@id/separator"
+            android:id="@+id/register_password"
             android:hint="Password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:inputType="textPassword"/>
     </RelativeLayout>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_alignParentRight="true"
@@ -47,7 +65,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sign In"
+        android:text="Sign Up"
         android:textColor="@color/baby_powder"
         android:textStyle="bold"
         android:textSize="24sp"
@@ -57,10 +75,12 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/register_btn"
+        android:id="@+id/login_btn"
         android:layout_below="@id/rl_input"
-        android:text="Register"
+        android:text="Login"
         android:layout_marginTop="80dp"
         />
+
+
 
 </RelativeLayout>
