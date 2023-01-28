@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "728535550508",
+    "project_id": "jetflix-529a0",
+    "storage_bucket": "jetflix-529a0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:728535550508:android:dc7c639b980bc1ed9bdf89",
+        "android_client_info": {
+          "package_name": "com.richardo.finalproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "728535550508-pd32v128cij3mv6fhoi351sqjvgplvop.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.richardo.finalproject",
+            "certificate_hash": "e0ae9aad294892cbdedf36fbaf203672a33cc129"
+          }
+        },
+        {
+          "client_id": "728535550508-e2retuioif5r9uhf13irtgg0m8qi29ee.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDozSTl6VOBoW5rmPYZbFr2JfU2th_JaFg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "728535550508-e2retuioif5r9uhf13irtgg0m8qi29ee.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
