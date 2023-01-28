@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/raisin_black"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -19,23 +20,30 @@
             android:id="@+id/login_email"
             android:hint="Email"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"/>
         <View
 
             android:id="@+id/separator"
             android:layout_below="@+id/login_email"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"/>
-        <EditText
-            android:paddingLeft="20dp"
-            android:backgroundTint="@color/baby_powder"
-            android:drawableLeft="@drawable/ic_baseline_lock_24"
-            android:drawablePadding="20dp"
-            android:id="@+id/login_password"
-            android:layout_below="@id/separator"
-            android:hint="Password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+       <com.google.android.material.textfield.TextInputLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_below="@id/separator"
+           app:passwordToggleEnabled="true"
+           app:startIconDrawable="@drawable/ic_baseline_lock_24"
+           >
+           <EditText
+               android:paddingLeft="20dp"
+               android:backgroundTint="@color/baby_powder"
+               android:drawablePadding="20dp"
+               android:hint="Password"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:inputType="textPassword"/>
+       </com.google.android.material.textfield.TextInputLayout>
     </RelativeLayout>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_alignParentRight="true"
