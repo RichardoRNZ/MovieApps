@@ -12,4 +12,9 @@
     <color name="star_blue">#0E79B2</color>
     <color name="maroon">#BF1363</color>
     <color name="deep_safron">#F39237</color>
+    <color name="dark_grey">#121212</color>
+    <color name="dark_blue">#03001C</color>
+    <color name="dark_purple">#301E67</color>
+    <color name="blue_grey">#5B8FB9</color>
+    <color name="mint_grey">#B6EADA</color>
 </resources>

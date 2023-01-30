@@ -1,93 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/raisin_black"
+    android:background="@color/baby_powder"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:id="@+id/rl_input"
-        android:layout_marginRight="40dp"
-        android:background="@drawable/rectacle_root"
-        android:layout_centerVertical="true"
+    <View
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <EditText
-            android:paddingLeft="20dp"
-            android:backgroundTint="@color/baby_powder"
-            android:drawableLeft="@drawable/ic_baseline_person_24"
-            android:drawablePadding="20dp"
-            android:id="@+id/register_username"
-            android:hint="Username"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"/>
-        <View
+        android:layout_height="100dp"
+        android:background="@color/raisin_black"
+        android:id="@+id/topView"/>
 
-            android:id="@+id/separator"
-            android:layout_below="@+id/register_username"
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"/>
-        <EditText
-            android:layout_below="@id/separator"
-            android:paddingLeft="20dp"
-            android:backgroundTint="@color/baby_powder"
-            android:drawableLeft="@drawable/ic_baseline_email_24"
-            android:drawablePadding="20dp"
-            android:id="@+id/register_email"
-            android:hint="Email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:id="@+id/separator2"
-            android:layout_below="@id/register_email"/>
-     <com.google.android.material.textfield.TextInputLayout
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:layout_below="@id/separator2"
-         app:startIconDrawable="@drawable/ic_baseline_lock_24"
-         app:passwordToggleEnabled="true">
-         <EditText
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:paddingLeft="20dp"
-             android:backgroundTint="@color/baby_powder"
-             android:drawablePadding="20dp"
-             android:id="@+id/register_password"
-             android:hint="Password"
-             android:inputType="textPassword"/>
-     </com.google.android.material.textfield.TextInputLayout>
-    </RelativeLayout>
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:layout_alignParentRight="true"
-        android:src="@drawable/ic_baseline_arrow_forward_24"
+    <View
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="20dp"
-        android:id="@+id/register"/>
+        android:layout_height="100dp"
+        android:layout_below="@+id/topView"
+        android:background="@drawable/wave"
+        />
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/ic_baseline_person_2_24"
+        android:layout_alignParentRight="true"
+        android:id="@+id/user_icon"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sign Up"
+
+        android:paddingTop="10dp"
+        android:text="Create new account"
         android:textColor="@color/baby_powder"
-        android:textStyle="bold"
-        android:textSize="24sp"
-        android:layout_above="@id/rl_input"
-        android:layout_marginBottom="40dp"
-        android:layout_centerHorizontal="true"/>
+        android:textSize="50sp"
+        />
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        app:startIconDrawable="@drawable/ic_baseline_person_24"
+        android:id="@+id/txt_ipt_name">
+
+        <EditText
+            android:id="@+id/register_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/rectacle_root"
+            android:hint="Username"
+            android:inputType="textPersonName" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_ipt_name"
+        android:layout_marginTop="20dp"
+        app:startIconDrawable="@drawable/ic_baseline_email_24"
+        android:id="@+id/txt_ipt_email">
+
+        <EditText
+            android:id="@+id/register_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/rectacle_root"
+            android:hint="Email"
+            android:inputType="textEmailAddress" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <!--  -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:passwordToggleEnabled="true"
+        app:startIconDrawable="@drawable/ic_baseline_lock_24"
+        android:layout_below="@id/txt_ipt_email"
+        android:id="@+id/txt_ipt_pass"
+        android:layout_marginTop="20dp">
+        <EditText
+            android:id="@+id/register_password"
+            android:background="@drawable/rectacle_root"
+            android:hint="Password"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
     <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_ipt_pass"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:text="Register"
+        android:background="@drawable/rounded_rectangle"
+        android:id="@+id/register"/>
+
+
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/register"
+        android:layout_centerHorizontal="true"
+        android:text="Login Now"
         android:id="@+id/login_btn"
-        android:layout_below="@id/rl_input"
-        android:text="Login"
-        android:layout_marginTop="80dp"
-        />
-
+        android:clickable="true"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/raisin_black"
+        android:textSize="20sp"/>
 
 
 </RelativeLayout>

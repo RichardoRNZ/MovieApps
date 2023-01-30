@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -23,8 +24,8 @@ import com.richardo.finalproject.Model.User;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private Button btn_login;
-    private FloatingActionButton register_btn;
+    private TextView btn_login;
+    private Button register_btn;
     private EditText register_email, register_password, register_username;
     private FirebaseAuth mAuth;
     private ProgressDialog progressDialog;

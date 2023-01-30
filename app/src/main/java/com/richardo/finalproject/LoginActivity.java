@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,8 +22,8 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private Button btn_register;
-    private FloatingActionButton btn_login;
+   private TextView btn_register;
+   private Button btn_login;
     private EditText email,password;
     private FirebaseAuth mAuth;
     private ProgressDialog progressDialog;
@@ -31,10 +32,11 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        btn_register = findViewById(R.id.register_btn);
         btn_login = findViewById(R.id.login);
+        btn_register = findViewById(R.id.register_btn);
         email = findViewById(R.id.login_email);
         password = findViewById(R.id.login_password);
+        mAuth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(LoginActivity.this);
         progressDialog.setTitle("Loading");
         progressDialog.setMessage("Please Wait...");
@@ -50,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                checkIsEmptyField();
             }
         });
     }
@@ -67,13 +69,15 @@ public class LoginActivity extends AppCompatActivity {
     }
     private void Login(String Email, String Password)
     {
-        mAuth.signInWithEmailAndPassword(Email, Password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        progressDialog.show();
+        mAuth.signInWithEmailAndPassword(Email, Password).addOnCompleteListener(LoginActivity.this,new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful() && task.getResult()!=null)
                 {
                     if(task.getResult().getUser()!=null)
                     {
+                        Toast.makeText(getApplicationContext(), "Login Success", Toast.LENGTH_SHORT).show();
                         reload();
                     }
                     else {
