@@ -1,9 +1,8 @@
-package com.richardo.finalproject;
+package com.richardo.finalproject.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,10 +14,10 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.richardo.finalproject.R;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -44,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent goToRegisterPage = new Intent(LoginActivity.this,RegisterActivity.class);
+                Intent goToRegisterPage = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(goToRegisterPage);
                 finish();
             }
