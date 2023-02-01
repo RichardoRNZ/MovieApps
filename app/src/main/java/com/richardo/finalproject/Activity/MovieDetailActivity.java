@@ -45,6 +45,7 @@ public class MovieDetailActivity extends AppCompatActivity {
         String movieTitle = getIntent().getExtras().getString("title");
         int imageResourceId = getIntent().getExtras().getInt("imgURL");
         int imagecover = getIntent().getExtras().getInt("imgCover");
+        int synopsis = Integer.parseInt(getIntent().getExtras().getString("description"));
         MovieThumbnailImg = findViewById(R.id.detail_movie);
         Glide.with(this).load(imageResourceId).into(MovieThumbnailImg);
         MovieThumbnailImg.setImageResource(imageResourceId);
@@ -54,6 +55,7 @@ public class MovieDetailActivity extends AppCompatActivity {
         tv_title.setText(movieTitle);
         getSupportActionBar().setTitle(movieTitle);
         tv_description = findViewById(R.id.detail_movie_desc);
+        tv_description.setText(getResources().getString(synopsis));
 
         MovieCoverImg.setAnimation(AnimationUtils.loadAnimation(this,R.anim.scale_animation));
         play_fab.setAnimation(AnimationUtils.loadAnimation(this,R.anim.scale_animation));

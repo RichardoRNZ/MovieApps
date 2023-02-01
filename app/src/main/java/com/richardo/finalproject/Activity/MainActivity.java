@@ -1,20 +1,26 @@
 package com.richardo.finalproject.Activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import android.annotation.SuppressLint;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.richardo.finalproject.Activity.MovieDetailActivity;
 import com.richardo.finalproject.Model.Movie;
 import com.richardo.finalproject.Model.Slide;
@@ -36,13 +42,16 @@ public class MainActivity extends AppCompatActivity implements MovieItemClickLis
     private TabLayout indicator;
     private RecyclerView MoviesRV,MoviesRVTrend;
     private DatabaseReference databaseReference;
+    private List<Movie> listmovies = new ArrayList<>();;
+    private MovieAdapter movieAdapter =  new MovieAdapter(this,listmovies,this);;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        databaseReference = FirebaseDatabase.getInstance().getReference("Movie");
 
-        addMovieToDatabase();
+//        addMovieToDatabase();
         iniViews();
 
         iniSlider();
@@ -55,23 +64,56 @@ public class MainActivity extends AppCompatActivity implements MovieItemClickLis
     }
 
     private void iniTrendMovies() {
+       getMovies();
 
-        MovieAdapter trendMovieAdapter = new MovieAdapter(this,DataSource.getTrendMovies(),this);
-        MoviesRVTrend.setAdapter(trendMovieAdapter);
+
+        MoviesRVTrend.setAdapter(movieAdapter);
         MoviesRVTrend.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+
     }
-    private void addMovieToDatabase()
-    {
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("Movie");
-        List<Movie> movies = DataSource.addMovie();
-        databaseReference.push().setValue(movies);
-    }
+//    private void addMovieToDatabase()
+//    {
+//
+//        List<Movie> movies = DataSource.addMovie();
+//        databaseReference.push().setValue(movies);
+//    }
     private void iniPopularMovies() {
 
 
-        MovieAdapter movieAdapter = new MovieAdapter(this, DataSource.getPopularMovies(),this);
+
+       getMovies();
         MoviesRV.setAdapter(movieAdapter);
         MoviesRV.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+
+    }
+    private void getMovies()
+    {
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists())
+                {
+                    for(DataSnapshot dataSnapshot : snapshot.getChildren())
+                    {
+                        for(DataSnapshot dataSnapshot1:dataSnapshot.getChildren())
+                        {
+                            listmovies.add(dataSnapshot1.getValue(Movie.class));
+
+                        }
+                    }
+
+                }
+                movieAdapter.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getApplicationContext(),"Unkwon Error",Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     private void iniSlider() {
@@ -104,6 +146,7 @@ public class MainActivity extends AppCompatActivity implements MovieItemClickLis
         intent.putExtra("title",movie.getTitle());
         intent.putExtra("imgURL",movie.getThumbnail());
         intent.putExtra("imgCover",movie.getCoverPhoto());
+        intent.putExtra("description",movie.getDescription());
 
         ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this,movieImageView
                 ,"sharedName");

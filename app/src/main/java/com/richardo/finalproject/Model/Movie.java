@@ -10,6 +10,11 @@ public class Movie {
     private String streamingLink;
     private int coverPhoto;
 
+
+    public Movie()
+    {
+
+    }
     public Movie(String title, int thumbnail, int coverPhoto) {
         this.title = title;
         this.thumbnail = thumbnail;
@@ -30,6 +35,7 @@ public class Movie {
         this.streamingLink = streamingLink;
         this.coverPhoto = coverPhoto;
     }
+
 
 
 
