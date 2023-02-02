@@ -69,6 +69,11 @@ public class DataSource {
         movies.add(new Movie("Puss in Boots",R.drawable.puss,R.drawable.pusscover,String.valueOf(R.string.push_desc),"Dreamworks","SU","https://www.youtube.com/watch?v=RqrXhwS33yc"));
         movies.add(new Movie("Mission Impossible:Rogue Nation",R.drawable.misimpo,R.drawable.misimpocover,String.valueOf(R.string.mission_desc),"Studio C","17+","https://www.youtube.com/watch?v=2m1drlOZSDw"));
         movies.add(new Movie("The Martian",R.drawable.martian,R.drawable.martiancover,String.valueOf(R.string.martian_desc),"20th Century Fox","13+","https://www.youtube.com/watch?v=ej3ioOneTy8"));
+
+        return movies;
+    }
+    public static List<Movie> addTrendMovie(){
+        List<Movie> movies = new ArrayList<>();
         movies.add(new Movie("Alice in Borderland", R.drawable.alice,R.drawable.alicecover,String.valueOf(R.string.alice_desc),"Netflix","17+","https://www.youtube.com/watch?v=49_44FFKZ1M"));
         movies.add(new Movie("Avengers :End Game",R.drawable.avenger,R.drawable.avengercover,String.valueOf(R.string.avenger_desc),"Marvel Studio","13+","https://www.youtube.com/watch?v=79uhQ85n0YU"));
         movies.add(new Movie("Money Heist",R.drawable.moneyheist,R.drawable.moneyheistcover,String.valueOf(R.string.money_desc),"Netflix","17+","https://www.youtube.com/watch?v=L9giOct92Js"));

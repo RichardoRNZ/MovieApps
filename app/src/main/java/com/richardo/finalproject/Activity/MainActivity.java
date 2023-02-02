@@ -42,8 +42,8 @@ public class MainActivity extends AppCompatActivity implements MovieItemClickLis
     private TabLayout indicator;
     private RecyclerView MoviesRV,MoviesRVTrend;
     private DatabaseReference databaseReference;
-    private List<Movie> listmovies = new ArrayList<>();;
-    private MovieAdapter movieAdapter =  new MovieAdapter(this,listmovies,this);;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,31 +64,9 @@ public class MainActivity extends AppCompatActivity implements MovieItemClickLis
     }
 
     private void iniTrendMovies() {
-       getMovies();
-
-
-        MoviesRVTrend.setAdapter(movieAdapter);
-        MoviesRVTrend.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
-
-    }
-//    private void addMovieToDatabase()
-//    {
-//
-//        List<Movie> movies = DataSource.addMovie();
-//        databaseReference.push().setValue(movies);
-//    }
-    private void iniPopularMovies() {
-
-
-
-       getMovies();
-        MoviesRV.setAdapter(movieAdapter);
-        MoviesRV.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
-
-    }
-    private void getMovies()
-    {
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        List<Movie> trend = new ArrayList<>();
+       MovieAdapter movieAdapter2 =  new MovieAdapter(this,trend,this);
+        databaseReference.child("Trend Movie").addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -96,10 +74,50 @@ public class MainActivity extends AppCompatActivity implements MovieItemClickLis
                 {
                     for(DataSnapshot dataSnapshot : snapshot.getChildren())
                     {
-                        for(DataSnapshot dataSnapshot1:dataSnapshot.getChildren())
+                        for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren())
+                        {
+                            trend.add(dataSnapshot1.getValue(Movie.class));
+                        }
+                    }
+
+                }
+                movieAdapter2.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getApplicationContext(),"Unkwon Error",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
+        MoviesRVTrend.setAdapter(movieAdapter2);
+        MoviesRVTrend.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+
+    }
+//    private void addMovieToDatabase()
+//    {
+//
+//
+//        databaseReference.child("Popular Movie").push().setValue(DataSource.addMovie());
+//        databaseReference.child("Trend Movie").push().setValue(DataSource.addTrendMovie());
+//    }
+    private void iniPopularMovies() {
+        List<Movie> listmovies = new ArrayList<>();
+        MovieAdapter movieAdapter =  new MovieAdapter(this,listmovies,this);
+        databaseReference.child("Popular Movie").addValueEventListener(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists())
+                {
+                    for(DataSnapshot dataSnapshot : snapshot.getChildren())
+                    {
+                        for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren())
                         {
                             listmovies.add(dataSnapshot1.getValue(Movie.class));
-
                         }
                     }
 
@@ -114,7 +132,11 @@ public class MainActivity extends AppCompatActivity implements MovieItemClickLis
             }
         });
 
+        MoviesRV.setAdapter(movieAdapter);
+        MoviesRV.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+
     }
+
 
     private void iniSlider() {
         slides = new ArrayList<>();
