@@ -118,6 +118,7 @@ public class MainActivity extends AppCompatActivity implements MovieItemClickLis
                         for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren())
                         {
                             listmovies.add(dataSnapshot1.getValue(Movie.class));
+
                         }
                     }
 
@@ -131,7 +132,7 @@ public class MainActivity extends AppCompatActivity implements MovieItemClickLis
                 Toast.makeText(getApplicationContext(),"Unkwon Error",Toast.LENGTH_SHORT).show();
             }
         });
-
+        Log.d("tag",""+listmovies);
         MoviesRV.setAdapter(movieAdapter);
         MoviesRV.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
 

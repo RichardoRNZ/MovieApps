@@ -1,9 +1,12 @@
 package com.richardo.finalproject.Activity;
 
+import static com.richardo.finalproject.R.id.detail_movie_desc;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -39,6 +42,7 @@ public class MovieDetailActivity extends AppCompatActivity {
 
     }
 
+    @SuppressLint("ResourceType")
     void iniViews(){
         RvCast = findViewById(R.id.rv_cast);
         play_fab =  findViewById(R.id.play_fab);
@@ -54,8 +58,8 @@ public class MovieDetailActivity extends AppCompatActivity {
         tv_title = findViewById(R.id.detail_movie_title);
         tv_title.setText(movieTitle);
         getSupportActionBar().setTitle(movieTitle);
-        tv_description = findViewById(R.id.detail_movie_desc);
-        tv_description.setText(getResources().getString(synopsis));
+        tv_description = findViewById(detail_movie_desc);
+        tv_description.setText(getResources().getString(synopsis ));
 
         MovieCoverImg.setAnimation(AnimationUtils.loadAnimation(this,R.anim.scale_animation));
         play_fab.setAnimation(AnimationUtils.loadAnimation(this,R.anim.scale_animation));

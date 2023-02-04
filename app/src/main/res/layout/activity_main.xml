@@ -94,17 +94,18 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/trending"
-            app:layout_constraintVertical_bias="0.1" />
+            app:layout_constraintVertical_bias="0.1"
+            android:layout_marginBottom="40dp"/>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navbar"
 
             android:layout_width="0dp"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             android:background="@color/raisin_black"
             app:itemIconTint="@color/baby_powder"
             app:itemTextColor="@color/baby_powder"
-            app:layout_constraintBottom_toBottomOf="@+id/Rv_trend"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:menu="@menu/bottom_navbar" />
