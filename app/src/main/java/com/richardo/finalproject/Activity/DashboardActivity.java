@@ -36,6 +36,11 @@ public class DashboardActivity extends AppCompatActivity {
                    .load(firebaseUser.getPhotoUrl())
                    .into(this.Profile);
        }
+       else{
+           Glide.with(this)
+                   .load(R.drawable.ic_baseline_person_2_24)
+                   .into(Profile);
+       }
     }
     public void onBackPressed() {
         startActivity(new Intent(this,MainActivity.class));

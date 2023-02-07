@@ -17,19 +17,7 @@
         app:layout_constraintVertical_bias="0.497"
         android:src="@drawable/ic_launcher_background" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/transparent"
-        android:clickable="true"
-        android:src="@drawable/ic_baseline_play_arrow_24"
 
-        app:backgroundTintMode="multiply"
-        app:layout_constraintBottom_toBottomOf="@+id/slider_img"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView2"

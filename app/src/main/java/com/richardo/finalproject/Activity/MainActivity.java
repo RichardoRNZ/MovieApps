@@ -49,12 +49,15 @@ public class MainActivity extends AppCompatActivity implements MovieItemClickLis
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         databaseReference = FirebaseDatabase.getInstance().getReference("Movie");
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navbar);
+        bottomNavigationView = findViewById(R.id.bottom_navbar);
+        bottomNavigationView.setOnItemSelectedListener(this);
+
 
 //        addMovieToDatabase();
         iniViews();
@@ -191,15 +194,16 @@ public class MainActivity extends AppCompatActivity implements MovieItemClickLis
         switch (item.getItemId())
         {
             case R.id.btn_home:
-                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                startActivity(new Intent(this,MainActivity.class));
                 return true;
 
             case R.id.btn_watch_list:
-                startActivity(new Intent(getApplicationContext(),WatchListActivity.class));
+                startActivity(new Intent(this,WatchListActivity.class));
                 return true;
 
             case R.id.btn_dashboard_user:
-                startActivity(new Intent(getApplicationContext(),DashboardActivity.class));
+                startActivity(new Intent(this,DashboardActivity.class));
+                return true;
 
         }
 
