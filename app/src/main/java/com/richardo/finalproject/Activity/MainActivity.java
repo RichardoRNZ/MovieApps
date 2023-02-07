@@ -11,10 +11,13 @@ import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,20 +31,21 @@ import com.richardo.finalproject.R;
 import com.richardo.finalproject.adapters.MovieAdapter;
 import com.richardo.finalproject.adapters.MovieItemClickListener;
 import com.richardo.finalproject.adapters.SliderPagerAdapter;
-import com.richardo.finalproject.utils.DataSource;
+
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class MainActivity extends AppCompatActivity implements MovieItemClickListener {
+public class MainActivity extends AppCompatActivity implements MovieItemClickListener, NavigationBarView.OnItemSelectedListener {
 
     private List<Slide> slides;
     private ViewPager sliderpager;
     private TabLayout indicator;
     private RecyclerView MoviesRV,MoviesRVTrend;
     private DatabaseReference databaseReference;
+    private BottomNavigationView bottomNavigationView;
 
 
 
@@ -50,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements MovieItemClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         databaseReference = FirebaseDatabase.getInstance().getReference("Movie");
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navbar);
 
 //        addMovieToDatabase();
         iniViews();
@@ -170,6 +175,7 @@ public class MainActivity extends AppCompatActivity implements MovieItemClickLis
         intent.putExtra("imgURL",movie.getThumbnail());
         intent.putExtra("imgCover",movie.getCoverPhoto());
         intent.putExtra("description",movie.getDescription());
+        intent.putExtra("link",movie.getStreamingLink());
 
         ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this,movieImageView
                 ,"sharedName");
@@ -178,6 +184,26 @@ public class MainActivity extends AppCompatActivity implements MovieItemClickLis
         Toast.makeText(this, "item clicked : " + movie.getTitle(),Toast.LENGTH_LONG).show();
 
 
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId())
+        {
+            case R.id.btn_home:
+                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                return true;
+
+            case R.id.btn_watch_list:
+                startActivity(new Intent(getApplicationContext(),WatchListActivity.class));
+                return true;
+
+            case R.id.btn_dashboard_user:
+                startActivity(new Intent(getApplicationContext(),DashboardActivity.class));
+
+        }
+
+        return false;
     }
 
     class sliderTimer extends TimerTask {

@@ -1,6 +1,7 @@
 package com.richardo.finalproject.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,10 +22,18 @@ public class CastAdapter extends RecyclerView.Adapter<CastAdapter.CastViewHolder
 
     Context mContext;
     List<Cast> mData;
+    ActorClickListener actorClickListener;
 
     public CastAdapter(Context mContext, List<Cast> mData) {
         this.mContext = mContext;
         this.mData = mData;
+
+    }
+
+    public CastAdapter(Context mContext, List<Cast> mData, ActorClickListener actorClickListener) {
+        this.mContext = mContext;
+        this.mData = mData;
+        this.actorClickListener = actorClickListener;
     }
 
     @NonNull
@@ -53,6 +62,13 @@ public class CastAdapter extends RecyclerView.Adapter<CastAdapter.CastViewHolder
         public CastViewHolder(@NonNull View itemView) {
             super(itemView);
             img = itemView.findViewById(R.id.img_cast);
+
+           itemView.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View view) {
+                   actorClickListener.onClick(mData.get(getAdapterPosition()),img);
+               }
+           });
         }
     }
 
